@@ -4,19 +4,24 @@
 ###
 nameParser= /function (.+?)\(/
 React= @React or require('react')
-
+EventEmitter = require('events').EventEmitter
 class Component
 
-  @keyBlacklist= '__super__ __superConstructor__ constructor keyBlacklist reactify build toComponent'.split ' '
+  @keyBlacklist= '__super__ __superConstructor__ constructor keyBlacklist build toComponent'.split ' '
 
   @toComponent: (componentClass=this, ignore=[])->
     React.createFactory React.createClass extractMethods componentClass, ignore
 
   @build: @toComponent
 
-  # DEPRECATED: This alias will be removed from a future version.
-  @reactify: @toComponent
+EventEmitter.defaultMaxListeners = 0
+events = new EventEmitter
 
+for key,fn of events
+  Component.prototype[key] = fn
+  
+for key,fn of React.DOM
+  Component.prototype[key] = fn
 
 extractMethods= (comp, ignore)->
   methods= extractInto {}, (new comp), ignore
