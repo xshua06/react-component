@@ -1,17 +1,17 @@
 {
-  "name": "elucidata-react-coffee",
+  "name": "react-component",
   "version": "0.7.0",
   "description": "Build React components using natural CoffeeScript syntax.",
-  "author": "Matt McCray <matt@elucidata.net>",
+  "author": "Matt McCray <xshua06@163.com>",
   "license": "MIT",
   "main": "index.js",
-  "homepage": "https://github.com/elucidata/react-coffee",
+  "homepage": "https://github.com/xshua06/react-component",
   "bugs": {
-    "url": "https://github.com/elucidata/react-coffee/issues"
+    "url": "https://github.com/xshua06/react-component/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/elucidata/react-coffee.git"
+    "url": "https://github.com/xshua06/react-component.git"
   },
   "keywords": [
     "react",
