@@ -31,6 +31,8 @@ class Component
             #     @emit "#{key}:change", arg, _state
         ]
       )
+    else
+      console.log @constructor.displayName
 
   # get: (name)->
   #   if name
