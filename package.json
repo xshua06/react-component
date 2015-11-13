@@ -1,0 +1,48 @@
+{
+  "name": "react-component",
+  "version": "0.7.0",
+  "description": "Build React components using natural CoffeeScript syntax.",
+  "author": {
+    "name": "Matt McCray",
+    "email": "xshua06@163.com"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "homepage": "https://github.com/xshua06/react-component",
+  "bugs": {
+    "url": "https://github.com/xshua06/react-component/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xshua06/react-component.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "component",
+    "coffeescript"
+  ],
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "uglify-js": "~2.4.8",
+    "chai": "~1.9.0",
+    "mversion": "~0.3.1"
+  },
+  "scripts": {
+    "build": "coffee --no-header -c -o . src/component.coffee",
+    "min": "cat component.js | uglifyjs --comments=all -c  -m > component.min.js",
+    "dist": "npm run build && npm run min",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "inc-major": "mversion major",
+    "inc-minor": "mversion minor",
+    "inc-patch": "mversion patch"
+  },
+  "gitHead": "41b1f1eb119f0deb965750e2ba45f069c7173532",
+  "readme": "# elucidata-react-coffee\n\nDefine React components using natural CoffeeScript syntax.\n\nExample:\n\n```coffeescript\n{div}= React.DOM\n\nclass UserChip extends React.Component\n  @staticMethod: -> # becomes a static method on the React Component\n    \"hello\"\n\n  render: ->\n    (div null, \"Hello\")\n\nmodule.exports= UserChip.toComponent()\n```\n\nAlternate style:\n\n```coffeescript\n{div}= React.DOM\n\nmodule.exports= React.Component.toComponent class MyComponent\n\n  render: ->\n    (div null,\n      \"My Component!\"\n    )\n```\n\n## Note\n\n* You'll need to use the result of `.toComponent()` in React.\n* When `.toComponent()` is called a new instance of the component is created.\n  So you can use the constructor to fill any instance properties (specifically\n  for ES6 classes). But don't do anything crazy in there. It's must ONLY be\n  used for this purpose, as the constructor is discarded in the React component.\n\n## Installation\n\nFor browserify:\n\n    npm install elucidata-react-coffee --save\n\nFor bower:\n\n    bower install elucidata-react-coffee --save\n\n\n## Brunch\n\nIf you use [brunch](http://brunch.io), you should look into\nthe [react-tags-brunch](https://github.com/elucidata/react-tags-brunch)\nplugin, it plays wonderfully with react-coffee! The plugin\ninterpolates `(@div ...)` kinds of calls into `React.DOM.div(...)`. \n\nExample:\n\n```coffeescript\nclass Login extends React.Component\n\n  render: ->\n    (@div className:'box',\n      (@header null,\n        \"Login\"\n      )\n      (@section className:'body',\n        (@form role:'form',\n          # ... etc\n        )\n      )\n      (@footer null,\n        (@button onClick:@whatever, \"Login\")\n      )\n    )\n\nmodule.exports= Login.toComponent()\n```\n\nAfter it has been run through brunch, the output looks like this:\n\n```javascript\nvar Login,\n  __hasProp = {}.hasOwnProperty,\n  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };\n\nLogin = (function(_super) {\n  __extends(Login, _super);\n\n  function Login() {\n    return Login.__super__.constructor.apply(this, arguments);\n  }\n\n  Login.prototype.render = function() {\n    return React.DOM.div({\n      className: 'box'\n    }, React.DOM.header(null, \"Login\"), React.DOM.section({\n      className: 'body'\n    }, React.DOM.form({\n      role: 'form'\n    })), React.DOM.footer(null, React.DOM.button({\n      onClick: this.whatever\n    }, \"Login\")));\n  };\n\n  return Login;\n\n})(React.Component);\n\nmodule.exports = Login.toComponent();\n```\n\n# JSX and ES6\n\nIf you are using JSX and enable the `--harmony` flag, you can use react-coffee\nwith ES6 classes as well:\n\n```javascript\nclass Test extends React.Component {\n\n  static message() {\n    return \"Hello, mate.\"\n  }\n\n  getInitialState() {\n    return {\n      hello: 'Howdy'\n    }\n  }\n\n  render() {\n    return (\n      <div>\n        You said: { this.type.message() }<br/>\n        I said: { this.state.hello }\n      </div>\n    )\n  }\n\n}\n\nmodule.exports= Test.toComponent()\n```\n\n## Todo\n\n- Examples\n- Tests\n\n# License\n\nThe MIT License (MIT)\n\nCopyright (c) 2014 Elucidata unLTD\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+  "readmeFilename": "README.md",
+  "_id": "react-component@0.7.0",
+  "_shasum": "ae0c649781a88a6f66be57f90e31c764bdda81f0",
+  "_from": "git://github.com/xshua06/react-component.git",
+  "_resolved": "git://github.com/xshua06/react-component.git#41b1f1eb119f0deb965750e2ba45f069c7173532",
+  "_fromGithub": true
+}
