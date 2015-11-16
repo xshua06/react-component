@@ -1,0 +1,26 @@
+{
+  "name": "elucidata-react-coffee",
+  "main": "component.js",
+  "version": "0.7.0",
+  "homepage": "https://github.com/elucidata/react-coffee",
+  "authors": [
+    "Matt McCray <matt@elucidata.net>"
+  ],
+  "description": "Build React components using natural CoffeeScript syntax.",
+  "keywords": [
+    "react",
+    "reactjs",
+    "coffeescript"
+  ],
+  "dependencies": {
+    "react": "*"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
