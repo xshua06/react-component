@@ -5,42 +5,12 @@
 nameParser   = /function (.+?)\(/
 React        = @React or require('react')
 EventEmitter = require('events').EventEmitter
-# _state       = {};
 
 class Component
-  @keyBlacklist= '__super__ __superConstructor__ constructor keyBlacklist build toComponent'.split ' '
+  @keyBlacklist= '__super__ __superConstructor__ constructor keyBlacklist build'.split ' '
 
-  @toComponent: (componentClass=this, ignore=[])->
+  @build: (componentClass=this, ignore=[])->
     React.createFactory React.createClass extractMethods componentClass, ignore
-
-  @build: @toComponent
-
-  setState: (partialState, callback)->
-    if @isMounted()
-      @__proto__.__proto__.setState.apply(
-        @,
-        [
-          partialState,
-          =>
-            callback?()
-            # for key,value of partialState
-            #   if _state[key] isnt value
-            #     _state[key] = value
-            #     arg = {}
-            #     arg[key] = value
-            #     @emit "#{key}:change", arg, _state
-        ]
-      )
-    else
-      console.log @constructor.displayName
-
-  # get: (name)->
-  #   if name
-  #     _state[name]
-  #   else
-  #     _state
-
-
 
 EventEmitter.defaultMaxListeners = 0
 events = new EventEmitter
