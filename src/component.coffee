@@ -67,4 +67,3 @@ umd= (factory) ->
 
 umd -> Component
 
-React.Component= Component

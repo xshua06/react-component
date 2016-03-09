@@ -17,9 +17,9 @@
   Component = (function() {
     function Component() {}
 
-    Component.keyBlacklist = '__super__ __superConstructor__ constructor keyBlacklist build toComponent'.split(' ');
+    Component.keyBlacklist = '__super__ __superConstructor__ constructor keyBlacklist build'.split(' ');
 
-    Component.toComponent = function(componentClass, ignore) {
+    Component.build = function(componentClass, ignore) {
       if (componentClass == null) {
         componentClass = this;
       }
@@ -27,20 +27,6 @@
         ignore = [];
       }
       return React.createFactory(React.createClass(extractMethods(componentClass, ignore)));
-    };
-
-    Component.build = Component.toComponent;
-
-    Component.prototype.setState = function(partialState, callback) {
-      if (this.isMounted()) {
-        return this.__proto__.__proto__.setState.apply(this, [
-          partialState, (function(_this) {
-            return function() {
-              return typeof callback === "function" ? callback() : void 0;
-            };
-          })(this)
-        ]);
-      }
     };
 
     return Component;
@@ -133,7 +119,5 @@
   umd(function() {
     return Component;
   });
-
-  React.Component = Component;
 
 }).call(this);
