@@ -54,9 +54,7 @@
     methods.displayName = getFnName(comp);
     handleMixins(methods, comp);
     handlePropTypes(methods, comp);
-    methods.statics = extractInto({
-      Class: comp
-    }, comp, ignore.concat(['mixins', 'propTypes']));
+    methods.statics = extractInto({}, comp, ignore.concat(['mixins', 'propTypes']));
     return methods;
   };
 
@@ -76,9 +74,9 @@
   };
 
   extractAndMerge = function(prop, merge) {
-    return function(instance, statics) {
+    return function(instance, propTypesOrMixins) {
       var result;
-      result = (typeof statics[prop] === "function" ? statics[prop]() : void 0) || statics[prop];
+      result = (typeof propTypesOrMixins[prop] === "function" ? propTypesOrMixins[prop]() : void 0) || propTypesOrMixins[prop];
       if (result != null) {
         if (instance[prop] == null) {
           return instance[prop] = result;

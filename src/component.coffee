@@ -27,7 +27,7 @@ extractMethods= (comp, ignore)->
   methods.displayName= getFnName comp
   handleMixins methods, comp
   handlePropTypes methods, comp
-  methods.statics= extractInto Class:comp, comp, ignore.concat(['mixins', 'propTypes'])
+  methods.statics= extractInto {}, comp, ignore.concat(['mixins', 'propTypes'])
   methods
 
 
@@ -39,8 +39,8 @@ extractInto= (target, source, ignore)->
   target
 
 extractAndMerge= (prop, merge)->
-  (instance, statics)->
-    result= statics[prop]?() or statics[prop]
+  (instance, propTypesOrMixins)->
+    result= propTypesOrMixins[prop]?() or propTypesOrMixins[prop]
     if result?
       unless instance[prop]?
         instance[prop]= result
