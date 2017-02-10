@@ -1,5 +1,5 @@
 {
-  "name": "reactc-component",
+  "name": "react-component",
   "version": "1.0.0",
   "description": "Build React components using natural CoffeeScript syntax.",
   "author": {
